@@ -112,9 +112,10 @@ function storeOperators(operator) {
   }
 }
 function decimal() {
-  if (!currentNumber.includes(".")) {
+  if (!currentNumber.includes(".") && currentNumber != "") {
     currentOperand.innerText = currentNumber += ".";
   }
+
 }
 
 numberButtons.forEach((button) => {

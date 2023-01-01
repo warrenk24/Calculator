@@ -16,7 +16,7 @@ body {
 .calc-grid {
     display: grid;
     grid-template-rows: minmax(7rem, auto) repeat(5, 6rem);
-    grid-template-columns: repeat(4, 5rem);
+    grid-template-columns: repeat(4, 6rem);
     background: linear-gradient(280deg, #171717, #444245);
     padding: 6rem 3rem 3rem 2.5rem;
     border: inset 10px #090909 solid;
@@ -31,7 +31,9 @@ body {
     flex-direction: column;
     align-items: flex-end;
     justify-content: space-between;
+    margin-bottom: 10px;
     font-size: 2em;
+    
     color: rgb(184, 190, 196);
     padding: 20px;
     grid-column: span 4;
