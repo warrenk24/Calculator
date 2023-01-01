@@ -3,36 +3,48 @@ const currentOperand = document.querySelector("[data-currentOperand]");
 const numberButtons = document.querySelectorAll("[data-number]");
 const operationButtons = document.querySelectorAll("[data-operation]");
 const deleteButtons = document.querySelector("[data-delete]");
-const decimalButtons = document.querySelector("[data-decimal]")
-decimalButtons.addEventListener('click', decimal)
+deleteButtons.addEventListener("click", deleted);
+const decimalButtons = document.querySelector("[data-decimal]");
+decimalButtons.addEventListener("click", decimal);
 const clearButtons = document.querySelector("[data-clear]");
 clearButtons.addEventListener("click", clear);
 const equalsButtons = document.querySelector("[data-equals]");
 equalsButtons.addEventListener("click", operate);
-let temp = "";
+
 let currentNumber = "";
 let prevNumber = "";
 let currentOp = "";
 
 function add(num, num2) {
+  prevOperand.innerText = `${prevNumber} ${currentOp} ${currentNumber} =`;
   prevNumber = num + num2;
   currentOperand.innerText = prevNumber;
 }
 
 function subtract(num, num2) {
+  prevOperand.innerText = `${prevNumber} ${currentOp} ${currentNumber} =`;
   prevNumber = num - num2;
   currentOperand.innerText = prevNumber;
 }
 
 function multiply(num, num2) {
+  prevOperand.innerText = `${prevNumber} ${currentOp} ${currentNumber} =`;
   prevNumber = num * num2;
   currentOperand.innerText = prevNumber;
 }
 
+
 function divide(num, num2) {
+  if (num2 !== 0){
+  prevOperand.innerText = `${prevNumber} ${currentOp} ${currentNumber} =`;
   prevNumber = num / num2;
   currentOperand.innerText = prevNumber;
+  }else {
+  currentOperand.innerText = 'Cannot be divided by Zero';
+  }
 }
+
+
 
 function operate() {
   prevNumber = Number(prevNumber);
@@ -40,28 +52,28 @@ function operate() {
 
   switch (currentOp) {
     case "+":
-       add(prevNumber, currentNumber);
+      add(prevNumber, currentNumber);
       break;
 
     case "-":
-       subtract(prevNumber, currentNumber);
+      subtract(prevNumber, currentNumber);
       break;
 
-    case "*":
-       multiply(prevNumber, currentNumber);
+    case "x":
+      multiply(prevNumber, currentNumber);
       break;
 
-    case "/":
-       divide(prevNumber, currentNumber);
+    case "÷":
+      divide(prevNumber, currentNumber);
       break;
 
     default:
       console.log("error");
   }
- 
+
   prevNumber = prevNumber.toString();
   currentNumber = currentNumber.toString();
-  currentNumber = "";
+  
   
 }
 
@@ -72,35 +84,38 @@ function storeNumber(number) {
   }
 }
 function clear() {
-   currentNumber = "";
-   prevNumber = "";
-   currentOp = "";
-   currentOperand.innerText = currentNumber;
-   prevOperand.innerText = prevNumber;
+  currentNumber = "";
+  prevNumber = "";
+  currentOp = "";
+  currentOperand.innerText = currentNumber;
+  prevOperand.innerText = prevNumber;
+}
+function deleted() {
+  if (currentNumber !== ""){
+    currentNumber = currentNumber.slice(0,-1)
+    currentOperand.innerText = currentNumber
+  }
+ 
+
 }
 
 function storeOperators(operator) {
-  
- 
-  if (prevNumber == ""){
-  currentOp = operator;
-  prevNumber = currentNumber;
-  prevOperand.innerText = `${currentNumber} ${operator}`;
-  currentNumber = "";
-  currentOperand.innerText = "";
-  }else {
-  currentOp = operator;
-  
-  prevOperand.innerText = `${prevNumber} ${operator}`;
+  if (prevNumber == "") {
+    currentOp = operator;
+    prevNumber = currentNumber;
+    prevOperand.innerText = `${currentNumber} ${operator}`;
+    currentNumber = "";
+    currentOperand.innerText = "";
+  } else {
+    currentNumber = ""
+    currentOp = operator;
+    prevOperand.innerText = `${prevNumber} ${operator}`;
   }
-
 }
-function decimal(){
-  if(!currentNumber.includes(".")){
-    currentOperand.innerText = currentNumber += "."
+function decimal() {
+  if (!currentNumber.includes(".")) {
+    currentOperand.innerText = currentNumber += ".";
   }
-  
-  
 }
 
 numberButtons.forEach((button) => {
