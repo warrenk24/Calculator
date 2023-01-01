@@ -9,7 +9,13 @@ decimalButtons.addEventListener("click", decimal);
 const clearButtons = document.querySelector("[data-clear]");
 clearButtons.addEventListener("click", clear);
 const equalsButtons = document.querySelector("[data-equals]");
-equalsButtons.addEventListener("click", operate);
+equalsButtons.addEventListener("click", () => {
+  if (currentNumber !== "" && prevNumber !== "") {
+    operate();
+  } else {
+    return;
+  }
+});
 
 let currentNumber = "";
 let prevNumber = "";
@@ -33,18 +39,15 @@ function multiply(num, num2) {
   currentOperand.innerText = prevNumber;
 }
 
-
 function divide(num, num2) {
-  if (num2 !== 0){
-  prevOperand.innerText = `${prevNumber} ${currentOp} ${currentNumber} =`;
-  prevNumber = num / num2;
-  currentOperand.innerText = prevNumber;
-  }else {
-  currentOperand.innerText = 'Cannot be divided by Zero';
+  if (num2 !== 0) {
+    prevOperand.innerText = `${prevNumber} ${currentOp} ${currentNumber} =`;
+    prevNumber = num / num2;
+    currentOperand.innerText = prevNumber;
+  } else {
+    currentOperand.innerText = "Cannot be divided by Zero";
   }
 }
-
-
 
 function operate() {
   prevNumber = Number(prevNumber);
@@ -68,13 +71,11 @@ function operate() {
       break;
 
     default:
-      console.log("error");
+      console.log("ERROR");
   }
 
   prevNumber = prevNumber.toString();
   currentNumber = currentNumber.toString();
-  
-  
 }
 
 function storeNumber(number) {
@@ -91,12 +92,10 @@ function clear() {
   prevOperand.innerText = prevNumber;
 }
 function deleted() {
-  if (currentNumber !== ""){
-    currentNumber = currentNumber.slice(0,-1)
-    currentOperand.innerText = currentNumber
+  if (currentNumber !== "") {
+    currentNumber = currentNumber.slice(0, -1);
+    currentOperand.innerText = currentNumber;
   }
- 
-
 }
 
 function storeOperators(operator) {
@@ -107,9 +106,9 @@ function storeOperators(operator) {
     currentNumber = "";
     currentOperand.innerText = "";
   } else {
-    currentNumber = ""
     currentOp = operator;
-    prevOperand.innerText = `${prevNumber} ${operator}`;
+    prevOperand.innerText = `${currentNumber} ${operator}`;
+    currentNumber = "";
   }
 }
 function decimal() {
