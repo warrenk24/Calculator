@@ -13,7 +13,7 @@ body {
     height: 100vh;
     display: grid;
     place-content: center;
-    grid-template-rows: minmax(20px, auto) repeat(5,70px);
+    grid-template-rows: minmax(80px, auto) repeat(5,70px);
     grid-template-columns: repeat(4, 70px);
 
 }
