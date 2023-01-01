@@ -9,6 +9,7 @@ const clearButtons = document.querySelector("[data-clear]");
 clearButtons.addEventListener("click", clear);
 const equalsButtons = document.querySelector("[data-equals]");
 equalsButtons.addEventListener("click", operate);
+let temp = "";
 let currentNumber = "";
 let prevNumber = "";
 let currentOp = "";
@@ -80,12 +81,19 @@ function clear() {
 
 function storeOperators(operator) {
   
+ 
+  if (prevNumber == ""){
   currentOp = operator;
   prevNumber = currentNumber;
-  prevOperand.innerText = currentNumber + " " + operator;
+  prevOperand.innerText = `${currentNumber} ${operator}`;
   currentNumber = "";
   currentOperand.innerText = "";
- 
+  }else {
+  currentOp = operator;
+  
+  prevOperand.innerText = `${prevNumber} ${operator}`;
+  }
+
 }
 function decimal(){
   if(!currentNumber.includes(".")){
