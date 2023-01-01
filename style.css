@@ -9,19 +9,20 @@ body {
     height: 100vh;
     margin: 0;
     padding: 0;
+    background: linear-gradient(145deg, #e8eee8, #323a37);
 
 }
 
 .calc-grid {
     display: grid;
-    grid-template-rows: minmax(80px, auto) repeat(5,70px);
-    grid-template-columns: repeat(4, 70px);
-    background-color: brown;
-    padding: 100px;
-   border: green 4px solid;
-   row-gap: 1.5em;
-   column-gap: 1.5em;
-    
+    grid-template-rows: minmax(7rem, auto) repeat(5, 6rem);
+    grid-template-columns: repeat(4, 5rem);
+    background: linear-gradient(280deg, #171717, #444245);
+    padding: 6rem 3rem 3rem 2.5rem;
+    border: inset 10px #090909 solid;
+   border-radius: 5px;
+   box-shadow: 31px 35px 58px 8px rgba(10,9,9,0.83);
+ 
 
 }
 
@@ -29,12 +30,19 @@ body {
     display: flex;
     flex-direction: column;
     align-items: flex-end;
-    justify-content: space-around;
+    justify-content: space-between;
+    font-size: 2em;
+    color: rgb(184, 190, 196);
     padding: 20px;
-    border: 1px red solid;
     grid-column: span 4;
+    outline: none;
+    border: inset 1px #090909 solid;
+    background: linear-gradient(145deg, #40633f, #24332d);
+    box-shadow: inset 2px 2px 0px #225732;    
 }
-
+.prev {
+    font-size: .5em;
+}
  .equals-button{
     grid-column: span 2;
    
@@ -46,10 +54,7 @@ body {
 
 button{
     
-    position: relative;
-    height: 7em;
-    width: 7em;
-    border-radius: 50%;
+    font-size: 1.3em;
     outline: none;
     border: 4px #090909 solid;
     background: linear-gradient(145deg, #171717, #444245);
@@ -62,16 +67,3 @@ button:hover {
     color: skyblue;
 }
 
-button::before {
-    position: absolute;
-    content: "";
-    height: 7.5em;
-    width: 7.5em;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    border-radius: inherit;
-    background: linear-gradient(145deg, #262626,#606060);
-    box-shadow: 11px 11px 22px #141414, -11px -11px 22px #525252;
-    z-index: -1;
-}
