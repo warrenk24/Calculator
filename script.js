@@ -2,46 +2,57 @@ const prevOperand = document.querySelector('[data-prevOperand]')
 const currentOperand = document.querySelector('[data-currentOperand]')
 const numberButtons = document.querySelectorAll('[data-number]')
 const operationButtons = document.querySelectorAll('[data-operation]')
-const deleteButtons = document.querySelectorAll('[data-delete]')
-const clearButtons = document.querySelectorAll('[data-clear]')
-const equalsButtons = document.querySelectorAll('[data-equals]')
+const deleteButtons = document.querySelector('[data-delete]')
+const clearButtons = document.querySelector('[data-clear]')
+clearButtons.addEventListener('click', clear)
+const equalsButtons = document.querySelector('[data-equals]')
+equalsButtons.addEventListener('click', operate)
 let currentNumber = ""
 let prevNumber= ""
 let currentOp = ""
 
 
 function add(num, num2) {
-  return num + num2;
+    
+    prevNumber  =  num + num2;
+    currentOperand.innerText = prevNumber
 }
 
 function subtract(num, num2) {
-  return num - num2;
+    prevNumber =  num - num2;
+    currentOperand.innerText = prevNumber
 }
 
 function multiply(num, num2) {
-  return num * num2;
+    prevNumber =  num * num2;
+    currentOperand.innerText = prevNumber
+
 }
 
 function divide(num, num2) {
-  return num / num2;
+    prevNumber =  num / num2;
+    currentOperand.innerText = prevNumber
 }
 
-function operate(num, operand, num2) {
-  switch (operand) {
+function operate() {
+    prevNumber = Number(prevNumber)
+    currentNumber = Number(prevNumber)
+    
+  switch (currentOp) {
     case "+":
-      return add(num, num2);
+      return add(prevNumber, currentNumber);
       break;
 
     case "-":
-      return subtract(num, num2);
+      return subtract(prevNumber, prevNumber);
       break;
 
     case "*":
-      return multiply(num, num2);
+      return multiply(prevNumber, prevNumber);
       break;
 
     case "/":
-      return divide(num, num2);
+      return divide(prevNumber, prevNumber);
       break;
 
     default:
@@ -56,18 +67,25 @@ function storeNumber(number) {
         currentOperand.innerText = currentNumber 
         
     }
-    
+ 
     
     
 }
+function clear() {
 
+}
 
 function storeOperators(operator){
+   
     currentOp = operator
+    console.log(currentOp)
     prevNumber = currentNumber
     prevOperand.innerText = currentNumber + " " + operator
+    currentNumber = ""
+    currentOperand.innerText = ""
     
 }
+
 
 numberButtons.forEach(button => {
     button.addEventListener('click', (e) => {
